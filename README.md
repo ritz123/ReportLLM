@@ -24,20 +24,33 @@ python generate_pdf.py   # optional PDF from the markdown report
 - Python 3.10+
 - [uv](https://github.com/astral-sh/uv) (used by `start_report_app.sh`) or `pip`
 - [Ollama](https://ollama.com/) for the AI chat features (optional for viewing data and exports)
+- A local ledger file **`X.md`** or **`X.xlsx`** in the project root (not stored in git — see below)
 
 ```bash
 ollama pull llama3.2
 ollama serve
 ```
 
+## Local data (not in git)
+
+Ledger files and generated outputs stay on your machine only:
+
+| Path | Purpose |
+|------|---------|
+| `X.md` / `X.xlsx` | Source expense ledger (place here after clone) |
+| `x_analysis/` | Charts, `analysis.json`, and report outputs from `analyze_x.py` |
+| `maintenance_app/reports/` | Uploaded `.md` reports from the web app |
+
+Clone the repo, add your own `X.md` or `X.xlsx`, then run `./start_report_app.sh` or `python analyze_x.py`.
+
 ## Project layout
 
 ```
-├── X.md / X.xlsx          # Source ledger (one tab/section per month, e.g. "Jan 2022")
+├── X.md / X.xlsx          # Your ledger (local only — not in git)
 ├── analyze_x.py           # Parse ledger → charts + analysis.json
 ├── generate_pdf.py        # Build PDF from the markdown report
 ├── start_report_app.sh    # Launch the web app
-├── x_analysis/            # Generated charts, analysis.json, MAINTENANCE_FUND_REPORT.*
+├── x_analysis/            # Generated locally (gitignored)
 └── maintenance_app/       # FastAPI web UI (see maintenance_app/README.md)
 ```
 

@@ -4,3 +4,10 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 markitdown/
+
+# Local ledger data and generated outputs (not versioned)
+X.md
+X.xlsx
+x_analysis/
+maintenance_app/reports/
+*.pdf
